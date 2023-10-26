@@ -1,0 +1,420 @@
+{
+    "Parameters": {
+        "BootstrapVersion": {
+            "Default": "/cdk-bootstrap/hnb659fds/version",
+            "Description": "Version of the CDK Bootstrap resources in this environment, automatically retrieved from SSM Parameter Store. [cdk:skip]",
+            "Type": "AWS::SSM::Parameter::Value<String>"
+        }
+    },
+    "Resources": {
+        "IgvfCatalogDevVpc8DE5C16B": {
+            "Properties": {
+                "CidrBlock": "10.5.0.0/16",
+                "EnableDnsHostnames": true,
+                "EnableDnsSupport": true,
+                "InstanceTenancy": "default",
+                "Tags": [
+                    {
+                        "Key": "Name",
+                        "Value": "NetworkStack/IgvfCatalogDevVpc"
+                    }
+                ]
+            },
+            "Type": "AWS::EC2::VPC"
+        },
+        "IgvfCatalogDevVpcIGWA90C69AA": {
+            "Properties": {
+                "Tags": [
+                    {
+                        "Key": "Name",
+                        "Value": "NetworkStack/IgvfCatalogDevVpc"
+                    }
+                ]
+            },
+            "Type": "AWS::EC2::InternetGateway"
+        },
+        "IgvfCatalogDevVpcVPCGW73B161D7": {
+            "Properties": {
+                "InternetGatewayId": {
+                    "Ref": "IgvfCatalogDevVpcIGWA90C69AA"
+                },
+                "VpcId": {
+                    "Ref": "IgvfCatalogDevVpc8DE5C16B"
+                }
+            },
+            "Type": "AWS::EC2::VPCGatewayAttachment"
+        },
+        "IgvfCatalogDevVpcisolatedSubnet1RouteTable94CF4500": {
+            "Properties": {
+                "Tags": [
+                    {
+                        "Key": "Name",
+                        "Value": "NetworkStack/IgvfCatalogDevVpc/isolatedSubnet1"
+                    }
+                ],
+                "VpcId": {
+                    "Ref": "IgvfCatalogDevVpc8DE5C16B"
+                }
+            },
+            "Type": "AWS::EC2::RouteTable"
+        },
+        "IgvfCatalogDevVpcisolatedSubnet1RouteTableAssociationC9ED7000": {
+            "Properties": {
+                "RouteTableId": {
+                    "Ref": "IgvfCatalogDevVpcisolatedSubnet1RouteTable94CF4500"
+                },
+                "SubnetId": {
+                    "Ref": "IgvfCatalogDevVpcisolatedSubnet1Subnet9BC6CF1B"
+                }
+            },
+            "Type": "AWS::EC2::SubnetRouteTableAssociation"
+        },
+        "IgvfCatalogDevVpcisolatedSubnet1Subnet9BC6CF1B": {
+            "Properties": {
+                "AvailabilityZone": "dummy1a",
+                "CidrBlock": "10.5.48.0/20",
+                "MapPublicIpOnLaunch": false,
+                "Tags": [
+                    {
+                        "Key": "aws-cdk:subnet-name",
+                        "Value": "isolated"
+                    },
+                    {
+                        "Key": "aws-cdk:subnet-type",
+                        "Value": "Isolated"
+                    },
+                    {
+                        "Key": "Name",
+                        "Value": "NetworkStack/IgvfCatalogDevVpc/isolatedSubnet1"
+                    }
+                ],
+                "VpcId": {
+                    "Ref": "IgvfCatalogDevVpc8DE5C16B"
+                }
+            },
+            "Type": "AWS::EC2::Subnet"
+        },
+        "IgvfCatalogDevVpcisolatedSubnet2RouteTableAssociation03BC3180": {
+            "Properties": {
+                "RouteTableId": {
+                    "Ref": "IgvfCatalogDevVpcisolatedSubnet2RouteTableECF63185"
+                },
+                "SubnetId": {
+                    "Ref": "IgvfCatalogDevVpcisolatedSubnet2SubnetAB176466"
+                }
+            },
+            "Type": "AWS::EC2::SubnetRouteTableAssociation"
+        },
+        "IgvfCatalogDevVpcisolatedSubnet2RouteTableECF63185": {
+            "Properties": {
+                "Tags": [
+                    {
+                        "Key": "Name",
+                        "Value": "NetworkStack/IgvfCatalogDevVpc/isolatedSubnet2"
+                    }
+                ],
+                "VpcId": {
+                    "Ref": "IgvfCatalogDevVpc8DE5C16B"
+                }
+            },
+            "Type": "AWS::EC2::RouteTable"
+        },
+        "IgvfCatalogDevVpcisolatedSubnet2SubnetAB176466": {
+            "Properties": {
+                "AvailabilityZone": "dummy1b",
+                "CidrBlock": "10.5.64.0/20",
+                "MapPublicIpOnLaunch": false,
+                "Tags": [
+                    {
+                        "Key": "aws-cdk:subnet-name",
+                        "Value": "isolated"
+                    },
+                    {
+                        "Key": "aws-cdk:subnet-type",
+                        "Value": "Isolated"
+                    },
+                    {
+                        "Key": "Name",
+                        "Value": "NetworkStack/IgvfCatalogDevVpc/isolatedSubnet2"
+                    }
+                ],
+                "VpcId": {
+                    "Ref": "IgvfCatalogDevVpc8DE5C16B"
+                }
+            },
+            "Type": "AWS::EC2::Subnet"
+        },
+        "IgvfCatalogDevVpcisolatedSubnet3RouteTableAssociationE2F54363": {
+            "Properties": {
+                "RouteTableId": {
+                    "Ref": "IgvfCatalogDevVpcisolatedSubnet3RouteTableF6D9F269"
+                },
+                "SubnetId": {
+                    "Ref": "IgvfCatalogDevVpcisolatedSubnet3Subnet489965AF"
+                }
+            },
+            "Type": "AWS::EC2::SubnetRouteTableAssociation"
+        },
+        "IgvfCatalogDevVpcisolatedSubnet3RouteTableF6D9F269": {
+            "Properties": {
+                "Tags": [
+                    {
+                        "Key": "Name",
+                        "Value": "NetworkStack/IgvfCatalogDevVpc/isolatedSubnet3"
+                    }
+                ],
+                "VpcId": {
+                    "Ref": "IgvfCatalogDevVpc8DE5C16B"
+                }
+            },
+            "Type": "AWS::EC2::RouteTable"
+        },
+        "IgvfCatalogDevVpcisolatedSubnet3Subnet489965AF": {
+            "Properties": {
+                "AvailabilityZone": "dummy1c",
+                "CidrBlock": "10.5.80.0/20",
+                "MapPublicIpOnLaunch": false,
+                "Tags": [
+                    {
+                        "Key": "aws-cdk:subnet-name",
+                        "Value": "isolated"
+                    },
+                    {
+                        "Key": "aws-cdk:subnet-type",
+                        "Value": "Isolated"
+                    },
+                    {
+                        "Key": "Name",
+                        "Value": "NetworkStack/IgvfCatalogDevVpc/isolatedSubnet3"
+                    }
+                ],
+                "VpcId": {
+                    "Ref": "IgvfCatalogDevVpc8DE5C16B"
+                }
+            },
+            "Type": "AWS::EC2::Subnet"
+        },
+        "IgvfCatalogDevVpcpublicSubnet1DefaultRoute1EAB41E5": {
+            "DependsOn": [
+                "IgvfCatalogDevVpcVPCGW73B161D7"
+            ],
+            "Properties": {
+                "DestinationCidrBlock": "0.0.0.0/0",
+                "GatewayId": {
+                    "Ref": "IgvfCatalogDevVpcIGWA90C69AA"
+                },
+                "RouteTableId": {
+                    "Ref": "IgvfCatalogDevVpcpublicSubnet1RouteTableB2428ED2"
+                }
+            },
+            "Type": "AWS::EC2::Route"
+        },
+        "IgvfCatalogDevVpcpublicSubnet1RouteTableAssociation76BC5412": {
+            "Properties": {
+                "RouteTableId": {
+                    "Ref": "IgvfCatalogDevVpcpublicSubnet1RouteTableB2428ED2"
+                },
+                "SubnetId": {
+                    "Ref": "IgvfCatalogDevVpcpublicSubnet1Subnet89493B4F"
+                }
+            },
+            "Type": "AWS::EC2::SubnetRouteTableAssociation"
+        },
+        "IgvfCatalogDevVpcpublicSubnet1RouteTableB2428ED2": {
+            "Properties": {
+                "Tags": [
+                    {
+                        "Key": "Name",
+                        "Value": "NetworkStack/IgvfCatalogDevVpc/publicSubnet1"
+                    }
+                ],
+                "VpcId": {
+                    "Ref": "IgvfCatalogDevVpc8DE5C16B"
+                }
+            },
+            "Type": "AWS::EC2::RouteTable"
+        },
+        "IgvfCatalogDevVpcpublicSubnet1Subnet89493B4F": {
+            "Properties": {
+                "AvailabilityZone": "dummy1a",
+                "CidrBlock": "10.5.0.0/20",
+                "MapPublicIpOnLaunch": true,
+                "Tags": [
+                    {
+                        "Key": "aws-cdk:subnet-name",
+                        "Value": "public"
+                    },
+                    {
+                        "Key": "aws-cdk:subnet-type",
+                        "Value": "Public"
+                    },
+                    {
+                        "Key": "Name",
+                        "Value": "NetworkStack/IgvfCatalogDevVpc/publicSubnet1"
+                    }
+                ],
+                "VpcId": {
+                    "Ref": "IgvfCatalogDevVpc8DE5C16B"
+                }
+            },
+            "Type": "AWS::EC2::Subnet"
+        },
+        "IgvfCatalogDevVpcpublicSubnet2DefaultRoute53E5C8E0": {
+            "DependsOn": [
+                "IgvfCatalogDevVpcVPCGW73B161D7"
+            ],
+            "Properties": {
+                "DestinationCidrBlock": "0.0.0.0/0",
+                "GatewayId": {
+                    "Ref": "IgvfCatalogDevVpcIGWA90C69AA"
+                },
+                "RouteTableId": {
+                    "Ref": "IgvfCatalogDevVpcpublicSubnet2RouteTableF4DB5BF1"
+                }
+            },
+            "Type": "AWS::EC2::Route"
+        },
+        "IgvfCatalogDevVpcpublicSubnet2RouteTableAssociationC25E4CDD": {
+            "Properties": {
+                "RouteTableId": {
+                    "Ref": "IgvfCatalogDevVpcpublicSubnet2RouteTableF4DB5BF1"
+                },
+                "SubnetId": {
+                    "Ref": "IgvfCatalogDevVpcpublicSubnet2Subnet53D90AAA"
+                }
+            },
+            "Type": "AWS::EC2::SubnetRouteTableAssociation"
+        },
+        "IgvfCatalogDevVpcpublicSubnet2RouteTableF4DB5BF1": {
+            "Properties": {
+                "Tags": [
+                    {
+                        "Key": "Name",
+                        "Value": "NetworkStack/IgvfCatalogDevVpc/publicSubnet2"
+                    }
+                ],
+                "VpcId": {
+                    "Ref": "IgvfCatalogDevVpc8DE5C16B"
+                }
+            },
+            "Type": "AWS::EC2::RouteTable"
+        },
+        "IgvfCatalogDevVpcpublicSubnet2Subnet53D90AAA": {
+            "Properties": {
+                "AvailabilityZone": "dummy1b",
+                "CidrBlock": "10.5.16.0/20",
+                "MapPublicIpOnLaunch": true,
+                "Tags": [
+                    {
+                        "Key": "aws-cdk:subnet-name",
+                        "Value": "public"
+                    },
+                    {
+                        "Key": "aws-cdk:subnet-type",
+                        "Value": "Public"
+                    },
+                    {
+                        "Key": "Name",
+                        "Value": "NetworkStack/IgvfCatalogDevVpc/publicSubnet2"
+                    }
+                ],
+                "VpcId": {
+                    "Ref": "IgvfCatalogDevVpc8DE5C16B"
+                }
+            },
+            "Type": "AWS::EC2::Subnet"
+        },
+        "IgvfCatalogDevVpcpublicSubnet3DefaultRoute0AA322BD": {
+            "DependsOn": [
+                "IgvfCatalogDevVpcVPCGW73B161D7"
+            ],
+            "Properties": {
+                "DestinationCidrBlock": "0.0.0.0/0",
+                "GatewayId": {
+                    "Ref": "IgvfCatalogDevVpcIGWA90C69AA"
+                },
+                "RouteTableId": {
+                    "Ref": "IgvfCatalogDevVpcpublicSubnet3RouteTableDFA530D7"
+                }
+            },
+            "Type": "AWS::EC2::Route"
+        },
+        "IgvfCatalogDevVpcpublicSubnet3RouteTableAssociation94B25B30": {
+            "Properties": {
+                "RouteTableId": {
+                    "Ref": "IgvfCatalogDevVpcpublicSubnet3RouteTableDFA530D7"
+                },
+                "SubnetId": {
+                    "Ref": "IgvfCatalogDevVpcpublicSubnet3Subnet805B0869"
+                }
+            },
+            "Type": "AWS::EC2::SubnetRouteTableAssociation"
+        },
+        "IgvfCatalogDevVpcpublicSubnet3RouteTableDFA530D7": {
+            "Properties": {
+                "Tags": [
+                    {
+                        "Key": "Name",
+                        "Value": "NetworkStack/IgvfCatalogDevVpc/publicSubnet3"
+                    }
+                ],
+                "VpcId": {
+                    "Ref": "IgvfCatalogDevVpc8DE5C16B"
+                }
+            },
+            "Type": "AWS::EC2::RouteTable"
+        },
+        "IgvfCatalogDevVpcpublicSubnet3Subnet805B0869": {
+            "Properties": {
+                "AvailabilityZone": "dummy1c",
+                "CidrBlock": "10.5.32.0/20",
+                "MapPublicIpOnLaunch": true,
+                "Tags": [
+                    {
+                        "Key": "aws-cdk:subnet-name",
+                        "Value": "public"
+                    },
+                    {
+                        "Key": "aws-cdk:subnet-type",
+                        "Value": "Public"
+                    },
+                    {
+                        "Key": "Name",
+                        "Value": "NetworkStack/IgvfCatalogDevVpc/publicSubnet3"
+                    }
+                ],
+                "VpcId": {
+                    "Ref": "IgvfCatalogDevVpc8DE5C16B"
+                }
+            },
+            "Type": "AWS::EC2::Subnet"
+        }
+    },
+    "Rules": {
+        "CheckBootstrapVersion": {
+            "Assertions": [
+                {
+                    "Assert": {
+                        "Fn::Not": [
+                            {
+                                "Fn::Contains": [
+                                    [
+                                        "1",
+                                        "2",
+                                        "3",
+                                        "4",
+                                        "5"
+                                    ],
+                                    {
+                                        "Ref": "BootstrapVersion"
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    "AssertDescription": "CDK bootstrap stack version 6 required. Please run 'cdk bootstrap' with a recent version of the CDK CLI."
+                }
+            ]
+        }
+    }
+}
