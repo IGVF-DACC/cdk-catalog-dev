@@ -17,7 +17,7 @@ class NetworkStack(Stack):
         self.igvf_dev_vpc = Vpc(
             self,
             'IgvfCatalogDevVpc',
-            ip_addresses=IpAddresses.cidr('10.5.0.0/16'),
+            ip_addresses=IpAddresses.cidr('10.10.0.0/16'),
             nat_gateways=0,
             subnet_configuration=[
                 SubnetConfiguration(
