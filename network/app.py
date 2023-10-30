@@ -15,7 +15,7 @@ app = cdk.App()
 
 NetworkStack(
     app,
-    'IgvfCatalogNetworkStack',
+    'IgvfCatalogDevNetworkStack',
     env=ENVIRONMENT,
     termination_protection=True,
 )

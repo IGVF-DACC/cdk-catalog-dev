@@ -9,7 +9,7 @@
     "Resources": {
         "IgvfCatalogDevVpc8DE5C16B": {
             "Properties": {
-                "CidrBlock": "10.5.0.0/16",
+                "CidrBlock": "10.10.0.0/16",
                 "EnableDnsHostnames": true,
                 "EnableDnsSupport": true,
                 "InstanceTenancy": "default",
@@ -72,7 +72,7 @@
         "IgvfCatalogDevVpcisolatedSubnet1Subnet9BC6CF1B": {
             "Properties": {
                 "AvailabilityZone": "dummy1a",
-                "CidrBlock": "10.5.48.0/20",
+                "CidrBlock": "10.10.48.0/20",
                 "MapPublicIpOnLaunch": false,
                 "Tags": [
                     {
@@ -122,7 +122,7 @@
         "IgvfCatalogDevVpcisolatedSubnet2SubnetAB176466": {
             "Properties": {
                 "AvailabilityZone": "dummy1b",
-                "CidrBlock": "10.5.64.0/20",
+                "CidrBlock": "10.10.64.0/20",
                 "MapPublicIpOnLaunch": false,
                 "Tags": [
                     {
@@ -172,7 +172,7 @@
         "IgvfCatalogDevVpcisolatedSubnet3Subnet489965AF": {
             "Properties": {
                 "AvailabilityZone": "dummy1c",
-                "CidrBlock": "10.5.80.0/20",
+                "CidrBlock": "10.10.80.0/20",
                 "MapPublicIpOnLaunch": false,
                 "Tags": [
                     {
@@ -237,7 +237,7 @@
         "IgvfCatalogDevVpcpublicSubnet1Subnet89493B4F": {
             "Properties": {
                 "AvailabilityZone": "dummy1a",
-                "CidrBlock": "10.5.0.0/20",
+                "CidrBlock": "10.10.0.0/20",
                 "MapPublicIpOnLaunch": true,
                 "Tags": [
                     {
@@ -302,7 +302,7 @@
         "IgvfCatalogDevVpcpublicSubnet2Subnet53D90AAA": {
             "Properties": {
                 "AvailabilityZone": "dummy1b",
-                "CidrBlock": "10.5.16.0/20",
+                "CidrBlock": "10.10.16.0/20",
                 "MapPublicIpOnLaunch": true,
                 "Tags": [
                     {
@@ -367,7 +367,7 @@
         "IgvfCatalogDevVpcpublicSubnet3Subnet805B0869": {
             "Properties": {
                 "AvailabilityZone": "dummy1c",
-                "CidrBlock": "10.5.32.0/20",
+                "CidrBlock": "10.10.32.0/20",
                 "MapPublicIpOnLaunch": true,
                 "Tags": [
                     {
