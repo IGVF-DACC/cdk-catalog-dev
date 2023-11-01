@@ -1,0 +1,184 @@
+{
+    "Parameters": {
+        "AwsIgvfCatalogDevSlackWebhookSlackWebhookUrlParameter8F9B3124": {
+            "Default": "SLACK_WEBHOOK_URL_FOR_AWS_IGVF_CATALOG_DEV_CHANNEL",
+            "Type": "AWS::SSM::Parameter::Value<String>"
+        },
+        "BootstrapVersion": {
+            "Default": "/cdk-bootstrap/hnb659fds/version",
+            "Description": "Version of the CDK Bootstrap resources in this environment, automatically retrieved from SSM Parameter Store. [cdk:skip]",
+            "Type": "AWS::SSM::Parameter::Value<String>"
+        }
+    },
+    "Resources": {
+        "AlarmNotificationTopic58BFACC9": {
+            "Type": "AWS::SNS::Topic"
+        },
+        "AwsIgvfCatalogDevSlackWebhookConnection72A8D81E": {
+            "Properties": {
+                "AuthParameters": {
+                    "BasicAuthParameters": {
+                        "Password": "123",
+                        "Username": "abc"
+                    }
+                },
+                "AuthorizationType": "BASIC"
+            },
+            "Type": "AWS::Events::Connection"
+        },
+        "AwsIgvfCatalogDevSlackWebhookPassEventsToSlackB324158E": {
+            "Properties": {
+                "EventPattern": {
+                    "detail": {
+                        "metadata": {
+                            "includes_slack_notification": [
+                                true
+                            ]
+                        }
+                    }
+                },
+                "State": "ENABLED",
+                "Targets": [
+                    {
+                        "Arn": {
+                            "Fn::GetAtt": [
+                                "AwsIgvfCatalogDevSlackWebhookSlackIncomingWebhookDestinationApiDestinationD66E9B95",
+                                "Arn"
+                            ]
+                        },
+                        "Id": "Target0",
+                        "InputPath": "$.detail.data.slack",
+                        "RoleArn": {
+                            "Fn::GetAtt": [
+                                "AwsIgvfCatalogDevSlackWebhookSlackIncomingWebhookDestinationEventsRole97039EB3",
+                                "Arn"
+                            ]
+                        }
+                    }
+                ]
+            },
+            "Type": "AWS::Events::Rule"
+        },
+        "AwsIgvfCatalogDevSlackWebhookSlackIncomingWebhookDestinationApiDestinationD66E9B95": {
+            "Properties": {
+                "ConnectionArn": {
+                    "Fn::GetAtt": [
+                        "AwsIgvfCatalogDevSlackWebhookConnection72A8D81E",
+                        "Arn"
+                    ]
+                },
+                "HttpMethod": "POST",
+                "InvocationEndpoint": {
+                    "Ref": "AwsIgvfCatalogDevSlackWebhookSlackWebhookUrlParameter8F9B3124"
+                }
+            },
+            "Type": "AWS::Events::ApiDestination"
+        },
+        "AwsIgvfCatalogDevSlackWebhookSlackIncomingWebhookDestinationEventsRole97039EB3": {
+            "Properties": {
+                "AssumeRolePolicyDocument": {
+                    "Statement": [
+                        {
+                            "Action": "sts:AssumeRole",
+                            "Effect": "Allow",
+                            "Principal": {
+                                "Service": "events.amazonaws.com"
+                            }
+                        }
+                    ],
+                    "Version": "2012-10-17"
+                }
+            },
+            "Type": "AWS::IAM::Role"
+        },
+        "AwsIgvfCatalogDevSlackWebhookSlackIncomingWebhookDestinationEventsRoleDefaultPolicy51ABBF04": {
+            "Properties": {
+                "PolicyDocument": {
+                    "Statement": [
+                        {
+                            "Action": "events:InvokeApiDestination",
+                            "Effect": "Allow",
+                            "Resource": {
+                                "Fn::GetAtt": [
+                                    "AwsIgvfCatalogDevSlackWebhookSlackIncomingWebhookDestinationApiDestinationD66E9B95",
+                                    "Arn"
+                                ]
+                            }
+                        }
+                    ],
+                    "Version": "2012-10-17"
+                },
+                "PolicyName": "AwsIgvfCatalogDevSlackWebhookSlackIncomingWebhookDestinationEventsRoleDefaultPolicy51ABBF04",
+                "Roles": [
+                    {
+                        "Ref": "AwsIgvfCatalogDevSlackWebhookSlackIncomingWebhookDestinationEventsRole97039EB3"
+                    }
+                ]
+            },
+            "Type": "AWS::IAM::Policy"
+        },
+        "encodedccawsigvfcatalogdev36C8012A": {
+            "Properties": {
+                "ConfigurationName": "aws-igvf-catalog-dev",
+                "IamRoleArn": {
+                    "Fn::GetAtt": [
+                        "encodedccawsigvfcatalogdevConfigurationRole039697DB",
+                        "Arn"
+                    ]
+                },
+                "SlackChannelId": "C064J2FAK0Q",
+                "SlackWorkspaceId": "T1KMV4JJZ",
+                "SnsTopicArns": [
+                    {
+                        "Ref": "AlarmNotificationTopic58BFACC9"
+                    }
+                ]
+            },
+            "Type": "AWS::Chatbot::SlackChannelConfiguration"
+        },
+        "encodedccawsigvfcatalogdevConfigurationRole039697DB": {
+            "Properties": {
+                "AssumeRolePolicyDocument": {
+                    "Statement": [
+                        {
+                            "Action": "sts:AssumeRole",
+                            "Effect": "Allow",
+                            "Principal": {
+                                "Service": "chatbot.amazonaws.com"
+                            }
+                        }
+                    ],
+                    "Version": "2012-10-17"
+                }
+            },
+            "Type": "AWS::IAM::Role"
+        }
+    },
+    "Rules": {
+        "CheckBootstrapVersion": {
+            "Assertions": [
+                {
+                    "Assert": {
+                        "Fn::Not": [
+                            {
+                                "Fn::Contains": [
+                                    [
+                                        "1",
+                                        "2",
+                                        "3",
+                                        "4",
+                                        "5"
+                                    ],
+                                    {
+                                        "Ref": "BootstrapVersion"
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    "AssertDescription": "CDK bootstrap stack version 6 required. Please run 'cdk bootstrap' with a recent version of the CDK CLI."
+                }
+            ]
+        }
+    }
+}
